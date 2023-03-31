@@ -1,4 +1,4 @@
-# R_Project_Poliovirus_modelling
+# Research Project: Vaccine-derived poliovirus modelling
 
 This repository provides the MATLAB used for the poliovirus modelling in the MA4k9 research project studying the control of vaccinde derived poliovirus. The .m files with 'model' in the title are the models themselves, both deterministic and stochastic. The remaining .m files are the scripts that run these models to produce various plots for comparison. 
 
