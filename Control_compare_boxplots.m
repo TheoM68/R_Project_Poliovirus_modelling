@@ -11,15 +11,14 @@ set(0,'defaultaxesfontsize',14)
 maxtime = 365;
 timestep = 1;
 
-%Define initial condition with m initial asymptomatic infections
-m=0.05*para1.N;
-ICs = struct('S',(1-m/para1.N)*(1-0.904)*para1.N,'Is',0,'Ia',m,'Vipv',(1-m/para1.N)*(1-0.619)*0.904*para1.N,'Vopv',(1-m/para1.N)*(1-0.105)*0.619*0.904*para1.N,'Stil',(1-m/para1.N)*0.105*0.619*0.904*para1.N);
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %No control - base case
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 para1 = struct('beta',1/7,'nu',0.0055,'gamma',1/42,'a',0.0005,'k',0.01,'delta',1/60,'N',8799723);
+%Define initial condition with m initial asymptomatic infections
+m=0.05*para1.N;
+ICs = struct('S',(1-m/para1.N)*(1-0.904)*para1.N,'Is',0,'Ia',m,'Vipv',(1-m/para1.N)*(1-0.619)*0.904*para1.N,'Vopv',(1-m/para1.N)*(1-0.105)*0.619*0.904*para1.N,'Stil',(1-m/para1.N)*0.105*0.619*0.904*para1.N);
 
 %Base model with no control to compare other models against.
 [Classes_base] = Tauleap_polio_model(para1,ICs,maxtime,timestep);
