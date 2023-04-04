@@ -3,6 +3,9 @@
 % Case 1
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+set(0,'defaultlinelinewidth',2)
+set(0,'defaultaxesfontsize',16)
+
 %Set maxtime - greater than a year since we need longer to see the system
 %equilibriate
 maxtime = 1000;
@@ -30,31 +33,31 @@ ICsVo = struct('S',0,'Is',0,'Ia',para.N - para.gamma*para.N/(para.k*para.beta)-m
 % all 4 different perturbation directions and 2 different perturbations
 figure(1)
 clf
-tiledlayout(2,2)
+t = tiledlayout(2,2,'tilespacing','compact');
 
 nexttile
 plot(Classes_ODE_S.t,Classes_ODE_S.Ia,'linewidth',2)
 hold on
 plot(Classes_ODE_Is.t,Classes_ODE_Is.Ia,'linewidth',2)
 hold on
-plot(Classes_ODE_Vi.t,Classes_ODE_Vi.Ia,'linewidth',2)
+plot(Classes_ODE_Vi.t,Classes_ODE_Vi.Ia,'--','linewidth',2)
 hold on
-plot(Classes_ODE_Vo.t,Classes_ODE_Vo.Ia,'linewidth',2)
-xlabel('Time(days)')
-ylabel('Asymptomatic infections')
-legend('S direction','I_s direction','Vipv direction', 'Vopv direction')
+plot(Classes_ODE_Vo.t,Classes_ODE_Vo.Ia,'--','linewidth',2)
+%xlabel('Time (days)')
+ylabel('$I_a$','interpreter','latex')
+legend('$S$ direction','$I_s$ direction','$V_{IPV}$ direction', '$V_{OPV}$ direction','interpreter','latex')
 
 nexttile
 plot(Classes_ODE_S.t,Classes_ODE_S.Stil,'linewidth',2)
 hold on
-plot(Classes_ODE_Is.t,Classes_ODE_Is.Stil,'linewidth',2)
+plot(Classes_ODE_Is.t,Classes_ODE_Is.Stil,':','linewidth',2)
 hold on
-plot(Classes_ODE_Vi.t,Classes_ODE_Vi.Stil,'linewidth',2)
+plot(Classes_ODE_Vi.t,Classes_ODE_Vi.Stil,'-.','linewidth',2)
 hold on
-plot(Classes_ODE_Vo.t,Classes_ODE_Vo.Stil,'linewidth',2)
-xlabel('Time(days)')
-ylabel('Partially immune')
-legend('S direction','Is direction','Vipv direction', 'Vopv direction')
+plot(Classes_ODE_Vo.t,Classes_ODE_Vo.Stil,'--','linewidth',2)
+%xlabel('Time (days)')
+ylabel('$\widetilde{S}$','interpreter','latex')
+legend('$S$ direction','$I_s$ direction','$V_{IPV}$ direction', '$V_{OPV}$ direction','interpreter','latex','location','east')
 
 % Rerun simulation with much larger perturbation of 1000000.
 m=1000000;
@@ -72,24 +75,28 @@ plot(Classes_ODE_S.t,Classes_ODE_S.Ia,'linewidth',2)
 hold on
 plot(Classes_ODE_Is.t,Classes_ODE_Is.Ia,'linewidth',2)
 hold on
-plot(Classes_ODE_Vi.t,Classes_ODE_Vi.Ia,'linewidth',2)
+plot(Classes_ODE_Vi.t,Classes_ODE_Vi.Ia,'--','linewidth',2)
 hold on
-plot(Classes_ODE_Vo.t,Classes_ODE_Vo.Ia,'linewidth',2)
-xlabel('Time(days)')
-ylabel('Asymptomatic infections')
-legend('S direction','Is direction','Vipv direction', 'Vopv direction')
+plot(Classes_ODE_Vo.t,Classes_ODE_Vo.Ia,'--','linewidth',2)
+xlabel('Time (days)')
+ylabel('$I_a$','interpreter','latex')
+legend('$S$ direction','$I_s$ direction','$V_{IPV}$ direction', '$V_{OPV}$ direction','interpreter','latex')
 
 nexttile
 plot(Classes_ODE_S.t,Classes_ODE_S.Stil,'linewidth',2)
 hold on
-plot(Classes_ODE_Is.t,Classes_ODE_Is.Stil,'linewidth',2)
+plot(Classes_ODE_Is.t,Classes_ODE_Is.Stil,'-.','linewidth',2)
 hold on
-plot(Classes_ODE_Vi.t,Classes_ODE_Vi.Stil,'linewidth',2)
+plot(Classes_ODE_Vi.t,Classes_ODE_Vi.Stil,'--','linewidth',2)
 hold on
 plot(Classes_ODE_Vo.t,Classes_ODE_Vo.Stil,'linewidth',2)
-xlabel('Time(days)')
-ylabel('Partially immune')
-legend('S direction','Is direction','Vipv direction', 'Vopv direction')
+xlabel('Time (days)')
+ylabel('$\widetilde{S}$','interpreter','latex')
+legend('$S$ direction','$I_s$ direction','$V_{IPV}$ direction', '$V_{OPV}$ direction','interpreter','latex','location','east')
+
+set(gcf,'windowstyle','normal')
+set(gcf,'position',[1,1,1079,723])
+
 
 
 %For these same parameter values where the above fixed point exists we
@@ -113,43 +120,48 @@ ICsVo = struct('S',0,'Is',0,'Ia',0,'Vipv',k-m/2,'Vopv',m,'Stil',para.N-k-m/2);
 
 figure(2)
 clf
-tiledlayout(1,3)
+tiledlayout(1,3,'tilespacing','compact')
 
 nexttile
 plot(Classes_ODE_S.t,Classes_ODE_S.Ia,'linewidth',2)
 hold on
-plot(Classes_ODE_Is.t,Classes_ODE_Is.Ia,'linewidth',3)
+plot(Classes_ODE_Is.t,Classes_ODE_Is.Ia,'linewidth',2)
 hold on
-plot(Classes_ODE_Ia.t,Classes_ODE_Ia.Ia,'linewidth',2)
+plot(Classes_ODE_Ia.t,Classes_ODE_Ia.Ia,'--','linewidth',2)
 hold on
 plot(Classes_ODE_Vo.t,Classes_ODE_Vo.Ia,'linewidth',2)
-xlabel('Time(days)')
-ylabel('Asymptomatic infections')
-legend('S direction','Is direction','Ia direction', 'Vopv direction','location','northwest')
+xlabel('Time (days)')
+ylabel('$I_a$','interpreter','latex')
+%legend('S direction','Is direction','Ia direction', 'Vopv direction','location','northwest')
 
 nexttile
 plot(Classes_ODE_S.t,Classes_ODE_S.Vipv,'linewidth',2)
 hold on
 plot(Classes_ODE_Is.t,Classes_ODE_Is.Vipv,'linewidth',2)
 hold on
-plot(Classes_ODE_Ia.t,Classes_ODE_Ia.Vipv,'linewidth',2)
+plot(Classes_ODE_Ia.t,Classes_ODE_Ia.Vipv,'--','linewidth',2)
 hold on
 plot(Classes_ODE_Vo.t,Classes_ODE_Vo.Vipv,'linewidth',2)
-xlabel('Time(days)')
-ylabel('IPV vaccinations')
-legend('S direction','Is direction','Ia direction', 'Vopv direction')
+axis([0 inf 0 110])
+xlabel('Time (days)')
+ylabel('$V_{IPV}$','interpreter','latex')
+%legend('S direction','Is direction','Ia direction', 'Vopv direction')
 
 nexttile
 plot(Classes_ODE_S.t,Classes_ODE_S.Stil,'linewidth',2)
 hold on
 plot(Classes_ODE_Is.t,Classes_ODE_Is.Stil,'linewidth',2)
 hold on
-plot(Classes_ODE_Ia.t,Classes_ODE_Ia.Stil,'linewidth',2)
+plot(Classes_ODE_Ia.t,Classes_ODE_Ia.Stil,'--','linewidth',2)
 hold on
 plot(Classes_ODE_Vo.t,Classes_ODE_Vo.Stil,'linewidth',2)
-xlabel('Time(days)')
-ylabel('Partially immune')
-legend('S direction','Is direction','Ia direction', 'Vopv direction')
+xlabel('Time (days)')
+ylabel('$\widetilde{S}$','interpreter','latex')
+legend('$S$ direction','$I_s$ direction','$I_a$ direction', '$V_{OPV}$ direction','interpreter','latex','location','eastoutside')
+
+set(gcf,'windowstyle','normal')
+set(gcf,'position',[343,439,1377,458])
+
 
 %This whole class displays instability due to the threshold for Vipv for
 %isntability being negative in this case hence it is always satisfied hence
